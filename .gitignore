@@ -1,0 +1,8 @@
+data/
+mlflow.db
+mlruns/
+__pycache__/
+.pytest_cache/
+reports/_*.log
+gateway/**/bin/
+gateway/**/obj/

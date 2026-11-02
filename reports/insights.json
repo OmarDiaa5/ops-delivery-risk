@@ -1,0 +1,77 @@
+{
+ "review_by_lateness": [
+  {
+   "is_late": 0,
+   "orders": 88163,
+   "avg_review": 4.29,
+   "pct_1_2_star": 9.2
+  },
+  {
+   "is_late": 1,
+   "orders": 7661,
+   "avg_review": 2.57,
+   "pct_1_2_star": 54.0
+  }
+ ],
+ "late_rate_by_customer_state": [
+  {
+   "customer_state": "MA",
+   "orders": 717,
+   "late_pct": 19.7
+  },
+  {
+   "customer_state": "CE",
+   "orders": 1279,
+   "late_pct": 15.3
+  },
+  {
+   "customer_state": "BA",
+   "orders": 3256,
+   "late_pct": 14.0
+  },
+  {
+   "customer_state": "RJ",
+   "orders": 12350,
+   "late_pct": 13.5
+  },
+  {
+   "customer_state": "PA",
+   "orders": 946,
+   "late_pct": 12.4
+  }
+ ],
+ "late_rate_by_promised_window": [
+  {
+   "promised_window": "a: <15 days",
+   "orders": 14039,
+   "late_pct": 8.8
+  },
+  {
+   "promised_window": "b: 15-24 days",
+   "orders": 42999,
+   "late_pct": 9.1
+  },
+  {
+   "promised_window": "c: 25-34 days",
+   "orders": 30854,
+   "late_pct": 7.6
+  },
+  {
+   "promised_window": "d: 35+ days",
+   "orders": 8578,
+   "late_pct": 3.8
+  }
+ ],
+ "late_rate_by_route": [
+  {
+   "route": "cross state",
+   "orders": 61770,
+   "late_pct": 9.3
+  },
+  {
+   "route": "same state",
+   "orders": 34700,
+   "late_pct": 6.1
+  }
+ ]
+}

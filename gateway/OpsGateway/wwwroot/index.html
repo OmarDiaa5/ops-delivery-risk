@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delivery Risk Queue</title>
+<style>
+  body { font: 14px/1.4 system-ui, sans-serif; margin: 24px; color: #1d1d1f; background: #fafafa; }
+  h1 { font-size: 20px; } h2 { font-size: 16px; margin-top: 28px; }
+  textarea { width: 100%; max-width: 720px; height: 90px; font-family: monospace; }
+  table { border-collapse: collapse; margin-top: 12px; background: #fff; }
+  th, td { padding: 6px 10px; border-bottom: 1px solid #e5e5e5; text-align: left; }
+  .high { color: #b42318; font-weight: 600; } .medium { color: #b54708; } .low { color: #475467; }
+  .drift { color: #b42318; } .watch { color: #b54708; } .stable { color: #067647; }
+  button { padding: 6px 14px; }
+</style>
+</head>
+<body>
+<h1>Late-delivery review queue</h1>
+<p>Paste order IDs (one per line). Orders come back riskiest first, with the next action.</p>
+<textarea id="ids"></textarea><br>
+<button onclick="loadQueue()">Score orders</button>
+<div id="summary"></div>
+<table id="queue"></table>
+
+<h2>Input drift vs training</h2>
+<input id="month" placeholder="YYYY-MM (blank = all traffic)">
+<button onclick="loadDrift()">Check drift</button>
+<table id="drift"></table>
+
+<script>
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+async function loadQueue() {
+  const orderIds = document.getElementById("ids").value.split(/\s+/).filter(Boolean);
+  const r = await fetch("/api/orders/review-queue", {
+    method: "POST", headers: {"content-type": "application/json"}, body: JSON.stringify({orderIds})});
+  if (!r.ok) { document.getElementById("summary").textContent = await r.text(); return; }
+  const q = await r.json();
+  document.getElementById("summary").textContent = `${q.flagged} of ${q.total} orders flagged`;
+  document.getElementById("queue").innerHTML =
+    "<tr><th>Order</th><th>Risk</th><th>Tier</th><th>Drivers</th><th>Action</th></tr>" +
+    q.orders.map(o => `<tr><td>${esc(o.orderId)}</td><td>${o.lateRisk.toFixed(2)}</td>
+      <td class="${esc(o.tier)}">${esc(o.tier)}</td><td>${esc(o.topDrivers.join(", "))}</td>
+      <td>${esc(o.recommendedAction)}</td></tr>`).join("");
+}
+
+async function loadDrift() {
+  const m = document.getElementById("month").value.trim();
+  const r = await fetch("/api/monitoring/drift" + (m ? `?month=${encodeURIComponent(m)}` : ""));
+  const t = document.getElementById("drift");
+  if (!r.ok) { t.innerHTML = "<tr><td>No logged traffic for that window</td></tr>"; return; }
+  const d = await r.json();
+  t.innerHTML = `<tr><th>Feature (${d.n} orders)</th><th>PSI</th><th>Status</th></tr>` +
+    d.features.map(f => `<tr><td>${esc(f.feature)}</td><td>${f.psi.toFixed(3)}</td>
+      <td class="${esc(f.status)}">${esc(f.status)}</td></tr>`).join("");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+{
+ "drift": {
+  "2018-04": {
+   "n": 6798,
+   "rejected": 0,
+   "drifted": [
+    "seller_hist_late_rate",
+    "total_freight"
+   ],
+   "top": [
+    {
+     "feature": "purchase_month",
+     "psi": 8.6296,
+     "status": "seasonal"
+    },
+    {
+     "feature": "seller_hist_late_rate",
+     "psi": 0.6984,
+     "status": "drift"
+    },
+    {
+     "feature": "total_freight",
+     "psi": 0.2728,
+     "status": "drift"
+    },
+    {
+     "feature": "score",
+     "psi": 0.1856,
+     "status": "watch"
+    },
+    {
+     "feature": "main_category",
+     "psi": 0.1337,
+     "status": "watch"
+    }
+   ]
+  },
+  "2018-05": {
+   "n": 6749,
+   "rejected": 0,
+   "drifted": [
+    "seller_hist_late_rate",
+    "total_freight",
+    "score"
+   ],
+   "top": [
+    {
+     "feature": "purchase_month",
+     "psi": 8.6296,
+     "status": "seasonal"
+    },
+    {
+     "feature": "seller_hist_late_rate",
+     "psi": 0.776,
+     "status": "drift"
+    },
+    {
+     "feature": "total_freight",
+     "psi": 0.2868,
+     "status": "drift"
+    },
+    {
+     "feature": "score",
+     "psi": 0.2715,
+     "status": "drift"
+    },
+    {
+     "feature": "promised_days",
+     "psi": 0.183,
+     "status": "watch"
+    }
+   ]
+  },
+  "2018-06": {
+   "n": 6096,
+   "rejected": 0,
+   "drifted": [
+    "seller_hist_late_rate",
+    "total_freight",
+    "promised_days"
+   ],
+   "top": [
+    {
+     "feature": "purchase_month",
+     "psi": 8.2821,
+     "status": "seasonal"
+    },
+    {
+     "feature": "seller_hist_late_rate",
+     "psi": 0.8071,
+     "status": "drift"
+    },
+    {
+     "feature": "total_freight",
+     "psi": 0.3287,
+     "status": "drift"
+    },
+    {
+     "feature": "promised_days",
+     "psi": 0.2707,
+     "status": "drift"
+    },
+    {
+     "feature": "main_category",
+     "psi": 0.2296,
+     "status": "watch"
+    }
+   ]
+  },
+  "2018-07": {
+   "n": 6156,
+   "rejected": 0,
+   "drifted": [
+    "seller_hist_late_rate",
+    "score",
+    "promised_days",
+    "total_freight"
+   ],
+   "top": [
+    {
+     "feature": "purchase_month",
+     "psi": 8.2821,
+     "status": "seasonal"
+    },
+    {
+     "feature": "seller_hist_late_rate",
+     "psi": 0.5011,
+     "status": "drift"
+    },
+    {
+     "feature": "score",
+     "psi": 0.4782,
+     "status": "drift"
+    },
+    {
+     "feature": "promised_days",
+     "psi": 0.4237,
+     "status": "drift"
+    },
+    {
+     "feature": "total_freight",
+     "psi": 0.3288,
+     "status": "drift"
+    }
+   ]
+  },
+  "2018-08": {
+   "n": 6351,
+   "rejected": 0,
+   "drifted": [
+    "promised_days",
+    "score",
+    "seller_hist_late_rate",
+    "total_freight",
+    "main_category"
+   ],
+   "top": [
+    {
+     "feature": "purchase_month",
+     "psi": 9.2002,
+     "status": "seasonal"
+    },
+    {
+     "feature": "promised_days",
+     "psi": 1.4428,
+     "status": "drift"
+    },
+    {
+     "feature": "score",
+     "psi": 0.9331,
+     "status": "drift"
+    },
+    {
+     "feature": "seller_hist_late_rate",
+     "psi": 0.456,
+     "status": "drift"
+    },
+    {
+     "feature": "total_freight",
+     "psi": 0.2854,
+     "status": "drift"
+    }
+   ]
+  }
+ },
+ "performance": {
+  "2018-04": {
+   "n": 6798,
+   "late_rate": 0.0531,
+   "roc_auc": 0.7709,
+   "flag_recall": 0.5457,
+   "flag_precision": 0.1608
+  },
+  "2018-05": {
+   "n": 6749,
+   "late_rate": 0.0824,
+   "roc_auc": 0.7068,
+   "flag_recall": 0.4694,
+   "flag_precision": 0.1699
+  },
+  "2018-06": {
+   "n": 6096,
+   "late_rate": 0.0136,
+   "roc_auc": 0.7189,
+   "flag_recall": 0.3373,
+   "flag_precision": 0.0356
+  },
+  "2018-07": {
+   "n": 6156,
+   "late_rate": 0.0448,
+   "roc_auc": 0.6441,
+   "flag_recall": 0.4493,
+   "flag_precision": 0.0685
+  },
+  "2018-08": {
+   "n": 6351,
+   "late_rate": 0.1039,
+   "roc_auc": 0.5828,
+   "flag_recall": 0.4379,
+   "flag_precision": 0.1279
+  }
+ }
+}
